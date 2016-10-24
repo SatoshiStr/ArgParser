@@ -13,7 +13,7 @@ void ArgParser::parse(int argc, char **argv) {
             // --
             string name = string(&argv[i][2]);
             if(translateTable.find(name) == translateTable.end()) {
-                throw ParseError("Arg '" + name + "' is not difined.");
+                throw ParseError("Arg '" + name + "' is not defined.");
             }
             char shortName = translateTable[name];
             if(keyParameters[shortName].type == BOOL) {
@@ -140,7 +140,7 @@ Value ArgParser::operator[](char shortName) {
 
 
 Value ArgParser::operator[](int position) {
-    if(position <= positionArgs.size()) {
+    if(position <= positionArgs.size() && position >= 1) {
         return positionArgs[position-1];
     } else {
         throw logic_error("Position out of bound.");
